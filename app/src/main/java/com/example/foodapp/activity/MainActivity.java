@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.foodapp.R;
 import com.example.foodapp.adapter.CategoryAdapter;
 import com.example.foodapp.adapter.PopularAdapter;
 import com.example.foodapp.domain.CategoryDomain;
 import com.example.foodapp.domain.FoodDomain;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewCategory();
         recylerViewPopular();
+        bottomNavigation();
     }
 
     private void recyclerViewCategory() {
@@ -59,5 +64,25 @@ public class MainActivity extends AppCompatActivity {
         adapter2 = new PopularAdapter(foodList);
         recyclerViewPopularList.setAdapter(adapter2);
 
+    }
+
+    private void bottomNavigation() {
+        FloatingActionButton floatingActionButton = findViewById(R.id.cartBtn);
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CartListActivity.class));
+            }
+        });
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+            }
+        });
     }
 }
